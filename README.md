@@ -1,111 +1,40 @@
-# 📚 Sistema de Inscripción de Cursos
-## Universidad de Medellín
+# Monorepo LINEAS-ENFASIS - Entrega 2
+
+Este proyecto corresponde a la segunda entrega de la materia **LÍNEAS DE ENFASIS** de la Universidad de Medellín. Contiene la arquitectura containerizada del sistema con Frontend (Nginx), Backend (FastAPI con Swagger UI) y Base de Datos (PostgreSQL).
 
 ---
 
-# 📝 Descripción del proyecto
+## 🚀 Arquitectura del Proyecto
 
-Este proyecto consiste en el diseño de una plataforma web para la gestión e inscripción de cursos y líneas de énfasis de la Universidad de Medellín.
+El repositorio está organizado en un monorepo con la siguiente estructura:
 
-La solución busca mejorar la experiencia de los estudiantes durante el proceso de inscripción, permitiendo visualizar información clara sobre cursos, requisitos, horarios y cupos disponibles, mediante una interfaz intuitiva y alineada con los principios de UX y el manual de identidad gráfica institucional.
-
----
-
-# 🎯 Problema identificado
-
-Actualmente, el proceso de inscripción de cursos puede resultar confuso para los estudiantes debido a:
-
-- Dificultad para encontrar información de cursos.
-- Poca claridad en requisitos previos.
-- Problemas al visualizar cupos y horarios.
-- Navegación poco intuitiva.
-- Falta de centralización del proceso.
-
-Esto puede generar errores, frustración y retrasos durante la inscripción académica.
+* **Frontend:** Servidor web Nginx (Puerto 80).
+* **Backend:** API REST construida con FastAPI en Python (Puerto 3000) con documentación automática Swagger (`/docs`).
+* **Base de Datos:** PostgreSQL 15 (Puerto 5432).
+* **Orquestación:** Docker Compose.
 
 ---
 
-# 💡 Solución propuesta
+## 📋 Historias de Usuario
 
-Se propone una plataforma digital que permita:
-
-- Inicio de sesión seguro.
-- Búsqueda de líneas de énfasis.
-- Filtrado de cursos.
-- Visualización de requisitos y cupos.
-- Selección e inscripción de cursos.
-- Confirmación automática de inscripción.
-- Consulta del horario académico.
-
-El sistema está diseñado bajo principios de:
-
-- Usabilidad
-- Claridad visual
-- Consistencia
-- Accesibilidad básica
-- Navegación intuitiva
+* **HU01 - Contenedorización e Infraestructura:** Como desarrollador, quiero desplegar los servicios de frontend, backend y base de datos mediante Docker Compose para garantizar entornos homogéneos y portables.
+* **HU02 - Documentación de API (Swagger):** Como integrador o evaluador, quiero visualizar e interactuar con la documentación OpenAPI/Swagger en la ruta `/docs` del backend para probar los endpoints de la aplicación.
+* **HU03 - Publicación de imágenes:** Como administrador de despliegue, quiero disponer de las imágenes públicas en DockerHub para descargar e instanciar los servicios en cualquier entorno sin reconstruir el código base.
 
 ---
 
-# 👥 Usuarios del sistema
+## 🐳 Imágenes en DockerHub
 
-## 👨‍🎓 Estudiante
+Las imágenes de los servicios están disponibles públicamente en los siguientes repositorios:
 
-Puede:
-- Iniciar sesión
-- Buscar cursos
-- Filtrar información
-- Seleccionar cursos
-- Inscribirse
-- Consultar horarios
+* **Backend:** `mpolania331/lineas-backend:latest`
+* **Frontend:** `mpolania331/lineas-frontend:latest`
 
 ---
 
-## 👨‍🏫 Profesor
+## ⚙️ Instrucciones de Despliegue Local
 
-Puede:
-- Gestionar cronogramas
-- Registrar notas
-- Actualizar actividades
-
----
-
-## 👨‍💼 Coordinador
-
-Puede:
-- Registrar cursos
-- Aprobar solicitudes
-- Actualizar oferta académica
-
----
-
-# 🧩 Funcionalidades principales
-
-## 🔐 Inicio de sesión
-
-Permite autenticar al estudiante mediante correo institucional y contraseña.
-
-## 🔍 Búsqueda y filtros
-
-Permite encontrar cursos por:
-- Programa
-- Horario
-- Profesor
-- Cupos disponibles
-
-## 📚 Gestión de cursos
-
-Visualización detallada de:
-- Requisitos
-- Cupos
-- Horarios
-- Profesor asignado
-
-## 📝 Inscripción
-
-Permite seleccionar cursos y confirmar la inscripción.
-
-## 📅 Horario académico
-
-Visualización organizada de las materias inscritas.
-
+1. Clonar el repositorio:
+   ```bash
+   git clone [https://github.com/Mjpolania331/lineas_enfasis.git](https://github.com/Mjpolania331/lineas_enfasis.git)
+   cd lineas_enfasis
