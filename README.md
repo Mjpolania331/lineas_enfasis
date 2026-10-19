@@ -1,6 +1,6 @@
 # Monorepo LINEAS-ENFASIS - Entrega 2
 
-Este proyecto corresponde a la segunda entrega del proyecto **LÍNEAS DE ENFASIS** para la materia **Gestión de la Configuración** de la Universidad de Medellín. Contiene la arquitectura containerizada del sistema con Frontend (Nginx), Backend (FastAPI con Swagger UI) y Base de Datos (PostgreSQL).
+Este proyecto corresponde a la segunda entrega del proyecto **LÍNEAS DE ENFASIS**. Contiene la arquitectura containerizada del sistema con Frontend (Nginx), Backend (FastAPI con Swagger UI) y Base de Datos (PostgreSQL).
 
 ---
 
@@ -39,4 +39,3 @@ Las imágenes de los servicios están disponibles públicamente en:
    ```bash
    git clone [https://github.com/Mjpolania331/lineas_enfasis.git](https://github.com/Mjpolania331/lineas_enfasis.git)
    cd lineas_enfasis
-   
