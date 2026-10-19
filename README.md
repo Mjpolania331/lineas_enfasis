@@ -1,6 +1,6 @@
 # Monorepo LINEAS-ENFASIS - Entrega 2
 
-Este proyecto corresponde a la segunda entrega de la materia **LÍNEAS DE ENFASIS** de la Universidad de Medellín. Contiene la arquitectura containerizada del sistema con Frontend (Nginx), Backend (FastAPI con Swagger UI) y Base de Datos (PostgreSQL).
+Este proyecto corresponde a la segunda entrega del proyecto **LÍNEAS DE ENFASIS**. Contiene la arquitectura containerizada del sistema con Frontend (Nginx), Backend (FastAPI con Swagger UI) y Base de Datos (PostgreSQL).
 
 ---
 
