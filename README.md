@@ -7,9 +7,9 @@ Aplicación web full-stack contenerizada y orquestada en Kubernetes (Minikube) c
 |  Navegador Web    | ------------------> |   Frontend (Nginx)   | ------------------> |   Backend (FastAPI)   |
 | (Estudiante/Coord)|                     |  NodePort :30080     |                     |  ClusterIP :3000      |
 +-------------------+                     +----------------------+                     +-----------------------+
-                                                                                                   |
-                                                                                          SQLAlchemy (TCP :5432)
-                                                                                                   v
+                                                                                                  |
+                                                                                         SQLAlchemy (TCP :5432)
+                                                                                                  v
 +-------------------+    GitHub Actions   +----------------------+     Pull Image      +-----------------------+
 |  GitHub (main)    | ------------------> |      DockerHub       | ------------------> | PostgreSQL 15 + PVC   |
 |  Código + k8s/    |   pytest + build    |  :latest (web/api)   |                     |  Almacenamiento 1Gi   |
