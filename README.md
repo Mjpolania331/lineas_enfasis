@@ -3,6 +3,17 @@
 Aplicación web full-stack contenerizada y orquestada en Kubernetes (Minikube) con integración y despliegue continuo (CI/CD) mediante GitHub Actions y DockerHub.
 
 ## Arquitectura del Sistema
++-------------------+      HTTP :80       +----------------------+     Proxy /api/     +-----------------------+
+|  Navegador Web    | ------------------> |   Frontend (Nginx)   | ------------------> |   Backend (FastAPI)   |
+| (Estudiante/Coord)|                     |  NodePort :30080     |                     |  ClusterIP :3000      |
++-------------------+                     +----------------------+                     +-----------------------+
+                                                                                                   |
+                                                                                          SQLAlchemy (TCP :5432)
+                                                                                                   v
++-------------------+    GitHub Actions   +----------------------+     Pull Image      +-----------------------+
+|  GitHub (main)    | ------------------> |      DockerHub       | ------------------> | PostgreSQL 15 + PVC   |
+|  Código + k8s/    |   pytest + build    |  :latest (web/api)   |                     |  Almacenamiento 1Gi   |
++-------------------+                     +----------------------+                     +-----------------------+
 - **Frontend (`frontend/`):** Portal web institucional servido con **Nginx** (puerto 80, expuesto vía `NodePort 30080`), con proxy inverso `/api/` hacia el backend.
 - **Backend (`backend/`):** API REST desarrollada con **FastAPI** y **SQLAlchemy** (puerto 3000) con endpoints `/cursos`, `/inscripciones` y `/health`.
 - **Base de Datos (`k8s/postgres.yaml`):** **PostgreSQL 15** con almacenamiento persistente (`PersistentVolumeClaim` de 1Gi) y gestión de credenciales mediante `Secret` y `ConfigMap`.
