@@ -1,41 +1,34 @@
-# Monorepo LINEAS-ENFASIS - Entrega 2
+# Sistema de Gestión de Líneas de Énfasis - Universidad de Medellín
 
-Este proyecto corresponde a la segunda entrega del proyecto **LÍNEAS DE ENFASIS**. Contiene la arquitectura containerizada del sistema con Frontend (Nginx), Backend (FastAPI con Swagger UI) y Base de Datos (PostgreSQL).
+Aplicación web full-stack contenerizada y orquestada en Kubernetes (Minikube) con integración y despliegue continuo (CI/CD) mediante GitHub Actions y DockerHub.
 
----
+## Arquitectura del Sistema
+- **Frontend (`frontend/`):** Portal web institucional servido con **Nginx** (puerto 80, expuesto vía `NodePort 30080`), con proxy inverso `/api/` hacia el backend.
+- **Backend (`backend/`):** API REST desarrollada con **FastAPI** y **SQLAlchemy** (puerto 3000) con endpoints `/cursos`, `/inscripciones` y `/health`.
+- **Base de Datos (`k8s/postgres.yaml`):** **PostgreSQL 15** con almacenamiento persistente (`PersistentVolumeClaim` de 1Gi) y gestión de credenciales mediante `Secret` y `ConfigMap`.
+- **CI/CD (`.github/workflows/ci.yml`):** Ejecución automática de pruebas unitarias (`pytest`) y publicación de imágenes en DockerHub (`mpolania331/lineas-backend:latest` y `mpolania331/lineas-frontend:latest`).
 
-## 🛠️ Tecnologías y Versiones
+## Despliegue en Kubernetes (Minikube)
 
-* **Frontend:** Nginx 1.31.7 (Puerto 80)
-* **Backend:** Python 3.10-slim + FastAPI 0.110.0 + Uvicorn (Puerto 3000)
-* **Base de Datos:** PostgreSQL 15 (Puerto 5432)
-* **Orquestación:** Docker Compose v2+
-* **Pruebas:** Playwright (Node.js) / Pytest
-
----
-
-## 📋 Historias de Usuario y Responsables
-
-| ID | Historia de Usuario | Responsable | Criterio de Aceptación |
-| :--- | :--- | :--- | :--- |
-| **HU01** | **Contenedorización e Infraestructura:** Como desarrollador, quiero desplegar los servicios mediante Docker Compose para garantizar entornos homogéneos. | M. Polanía | Servicios de Frontend, Backend y PostgreSQL corriendo en contenedores aislados comunicados mediante una red Docker. |
-| **HU02** | **Documentación de API (Swagger):** Como integrador, quiero visualizar e interactuar con la documentación OpenAPI/Swagger en `/docs` para probar los endpoints. | M. Polanía | Acceso a `/docs` funcional que expone los endpoints GET/POST de la aplicación. |
-| **HU03** | **Pruebas Automatizadas:** Como evaluador, quiero contar con pruebas e2e/unitarias para validar el flujo crítico del sistema. | M. Polanía | Ejecución de scripts de prueba que verifiquen la disponibilidad y respuestas HTTP del frontend y backend. |
-
----
-
-## 🐳 Imágenes en DockerHub
-
-Las imágenes de los servicios están disponibles públicamente en:
-
-* **Backend:** `mpolania331/lineas-backend:latest`
-* **Frontend:** `mpolania331/lineas-frontend:latest`
-
----
-
-## ⚙️ Instrucciones de Despliegue Local
-
-1. **Clonar el repositorio:**
+1. Iniciar el clúster local:
    ```bash
-   git clone [https://github.com/Mjpolania331/lineas_enfasis.git](https://github.com/Mjpolania331/lineas_enfasis.git)
-   cd lineas_enfasis
+   minikube start
+   ```
+2. Aplicar los manifiestos de infraestructura:
+   ```bash
+   kubectl apply -f k8s/
+   ```
+3. Verificar el estado de los pods, servicios y almacenamiento:
+   ```bash
+   kubectl get pods,svc,pvc
+   ```
+4. Abrir el portal web en el navegador:
+   ```bash
+   minikube service frontend-service
+   ```
+
+## Credenciales de Prueba
+- **Estudiante:** `sistemas@soyudemedellin.edu.co` / Contraseña: `123`
+- **Profesor:** `profesor.sistemas@udemedellin.edu.co` / Contraseña: `123`
+- **Coordinador:** `coordinador@udem.edu.co` / Contraseña: `123`
+   
